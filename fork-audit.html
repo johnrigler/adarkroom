@@ -166,10 +166,10 @@
     ["did", /(^|[^a-z])did([^a-z]|$)|decentralized.?identifier/i],
     ["identity", /identity|self.?sovereign|credential/i],
     ["wallet", /wallet|metamask|walletconnect/i],
-    ["web3", /web3|ethers(?:\\.js)?|ethereum|polygon|digibyte/i],
+    ["web3", /web3|ethers(?:\.js)?|ethereum|polygon|digibyte/i],
     ["signature", /signmessage|personal_sign|signature|public.?key|private.?key/i],
     ["blockchain", /blockchain|smart.?contract|transaction.?hash/i],
-    ["token", /token.?bound|erc-?721|erc-?1155|\\bnft\\b/i]
+    ["token", /token.?bound|erc-?721|erc-?1155|\bnft\b/i]
   ];
 
   function api(path) {
@@ -384,13 +384,13 @@
 
   function runAudit(event) {
     event.preventDefault();
-    var repoName = document.getElementById("repo").value.trim().replace(/^https?:\\/\\/github\\.com\\//, "").replace(/\\/$/, "");
+    var repoName = document.getElementById("repo").value.trim().replace(/^https?:\/\/github\.com\//, "").replace(/\/$/, "");
     var limit = Math.max(1, Math.min(35, Number(document.getElementById("limit").value) || 25));
     var forcedOwners = document.getElementById("owners").value.split(",").map(function (owner) {
       return owner.trim().toLowerCase();
     }).filter(Boolean);
 
-    if (!/^[^/]+\\/[^/]+$/.test(repoName)) {
+    if (!/^[^/]+\/[^/]+$/.test(repoName)) {
       setStatus("Repository must use owner/name format.", "error");
       return;
     }
